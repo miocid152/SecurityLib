@@ -4,6 +4,7 @@ import com.er.carrascome.libsecurity.tools.Encrypter;
 
 //generator https://www.browserling.com/tools/random-hex
 // https://gist.github.com/easternHong/6ca75a7fdce15c6a23d3
+//pruebas
 
 public class SecurityExpose {
 
