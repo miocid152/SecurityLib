@@ -1,8 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+    version = rootProject.ext.versionName
+
+    group = 'com.github.jitpack'
+    version = rootProject.ext.versionName
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
