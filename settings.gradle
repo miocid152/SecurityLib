@@ -1,0 +1,3 @@
+include ':libSecurity'
+include ':app'
+rootProject.name = "Secutiry"

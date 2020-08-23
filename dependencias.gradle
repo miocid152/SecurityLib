@@ -1,0 +1,11 @@
+ext {
+    compileSdkVersion = 30
+    buildToolsVersion = "30.0.2"
+    minSdkVersion = 21
+
+    versionCode = 1
+    versionName = "0.0.0001-ALFA"
+
+    //dependencias
+    appcompatX = '1.2.0'
+}
