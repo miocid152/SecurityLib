@@ -3,8 +3,8 @@ ext {
     buildToolsVersion = "30.0.2"
     minSdkVersion = 21
 
-    versionCode = 5
-    versionName = "0.0.0005-ALFA"
+    versionCode = 7
+    versionName = "0.0.0007-ALFA"
 
     //dependencias
     appcompatX = '1.2.0'
