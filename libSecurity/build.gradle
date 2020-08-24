@@ -6,7 +6,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     version = rootProject.ext.versionName
 
-    group = 'com.github.jitpack'
+    group = 'com.github.miocid152'
     version = rootProject.ext.versionName
 
     defaultConfig {
