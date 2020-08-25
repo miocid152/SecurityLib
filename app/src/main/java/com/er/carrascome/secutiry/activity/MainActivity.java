@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.er.carrascome.libsecurity.expose.SecurityExpose;
 import com.er.carrascome.libsecurity.tools.Encrypter;
+import com.er.carrascome.secutiry.BundleArguments;
 import com.er.carrascome.secutiry.R;
 import com.er.carrascome.secutiry.domain.Usuario;
 
@@ -33,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MainActivity2.class);
                 String nombreObjeto = ""+edtNombreObjeto.getText();
-                int variableNormal = Integer.parseInt( edtVariableNormal.getText()+"");
+                int variableNormal = (""+edtVariableNormal.getText()).matches("[0-9]*")?Integer.parseInt(edtVariableNormal.getText()+""):0;
                 Usuario erick = new Usuario();
                 erick.setNombre(nombreObjeto);
-                intent.putExtra(SecurityExpose.codifica("USUARIO"),SecurityExpose.codifica(erick));
-                intent.putExtra(SecurityExpose.codifica("DATO"),SecurityExpose.codifica(variableNormal));
+                intent.putExtra(SecurityExpose.codifica(BundleArguments.USUARIO),SecurityExpose.codifica(erick));
+                intent.putExtra(SecurityExpose.codifica(BundleArguments.DATO),SecurityExpose.codifica(variableNormal));
                 startActivity(intent);
             }
         });
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private void getExtras(){
         extras = getIntent().getExtras();
         if(extras!=null ) {
-            usuario = (Usuario) SecurityExpose.decodificaExtras(extras.get(SecurityExpose.codifica("USUARIO")));
-            dato = (Integer) SecurityExpose.decodificaExtras(extras.get(SecurityExpose.codifica("DATO")));
+            usuario = SecurityExpose.decodificaExtras(BundleArguments.USUARIO,extras,Usuario.class,null);
+            dato = SecurityExpose.decodificaExtras(BundleArguments.DATO,extras,Integer.class,0);
         }
     }
 }

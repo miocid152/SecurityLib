@@ -1,5 +1,7 @@
 package com.er.carrascome.libsecurity.expose;
 
+import android.os.Bundle;
+
 import com.er.carrascome.libsecurity.tools.Encrypter;
 
 //generator https://www.browserling.com/tools/random-hex
@@ -48,14 +50,18 @@ public class SecurityExpose {
         }
     }
 
-    public static Object decodificaExtras(Object decodifica){
-        return SecurityExpose.deCodifica((String) decodifica);
+    public static <T>T decodificaExtras(Enum decodifica, Bundle extras, Class<T> cast, T retornoDefault){
+        return SecurityExpose.castingObject( SecurityExpose.deCodifica((String) extras.get(SecurityExpose.codifica(decodifica))),cast,retornoDefault);
     }
 
-    public static Object decodificaExtras(Object decodifica, String pwd){
-        return SecurityExpose.deCodifica((String) decodifica,pwd);
+    public static <T>T decodificaExtras(String decodifica,String pwd, Bundle extras, Class<T> cast, T retornoDefault){
+        return SecurityExpose.castingObject(
+                SecurityExpose.deCodifica(
+                        ((String) extras.get(
+                                SecurityExpose.codifica(decodifica,pwd))
+                        ),pwd
+                ),cast,retornoDefault);
     }
-
 
     public static byte[] HexStringToByteArray(String s) throws IllegalArgumentException {
         int len = s.length();
@@ -81,5 +87,14 @@ public class SecurityExpose {
             hexChars[j * 2 + 1] = hexArray[v & 0x0F]; // Select hex character from lower nibble
         }
         return new String(hexChars);
+    }
+
+    public static <T>T castingObject(Object o,Class<T> clase,T retorno){
+        try {
+            return (o!=null)? clase.cast(o) :retorno;
+        }
+        catch (Exception e){
+            return  retorno;
+        }
     }
 }
